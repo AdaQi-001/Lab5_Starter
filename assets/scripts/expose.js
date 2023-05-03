@@ -10,9 +10,13 @@ const selectImage = document.getElementById('horn-select');
 const image = document.querySelector('#expose img');
 const sound = document.querySelector('#expose audio');
 const button = document.querySelector('button');
+const vol = document.getElementById('volume');
+const vol_img = document.querySelector('#volume-controls img');
+const jsConfetti = new JSConfetti();
 
 selectImage.addEventListener('change', change_img);
 button.addEventListener('click', play_sound);
+vol.addEventListener('input', change_volume);
 
 function change_img() {
   const selectedValue = selectImage.value;
@@ -33,4 +37,21 @@ function change_img() {
 
 function play_sound() {
   sound.play();
+  if (selectImage.value === 'party-horn') {
+    jsConfetti.addConfetti();
+  }
+}
+
+function change_volume() {
+  const changedVolume = vol.value;
+  sound.volume = changedVolume / 100;
+  if (changedVolume === 0) {
+    vol_img.src = 'assets/icons/volume-level-0.svg';
+  } else if (changedVolume < 33) {
+    vol_img.src = 'assets/icons/volume-level-1.svg';
+  } else if (changedVolume < 67) {
+    vol_img.src = 'assets/icons/volume-level-2.svg';
+  } else {
+    vol_img.src = 'assets/icons/volume-level-3.svg';
+  }
 }
