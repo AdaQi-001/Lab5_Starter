@@ -9,6 +9,7 @@
 const inputTxt = document.getElementById('text-to-speak');
 const voiceSelect = document.getElementById('voice-select');
 const button_talk = document.querySelector('button');
+const image = document.querySelector('#explore img');
 
 
 function populateVoiceList() {
@@ -37,10 +38,6 @@ if (
   speechSynthesis.onvoiceschanged = populateVoiceList;
 }
 
-
-
-
-
 button_talk.addEventListener('click', readText);
 
 function readText() {
@@ -62,4 +59,10 @@ function readText() {
     }
   }
   window.speechSynthesis.speak(utterance);
+  utterance.addEventListener('start', (event) => {
+    image.src = 'assets/images/smiling-open.png';
+  });
+  utterance.addEventListener('end', (event) => {
+    image.src = 'assets/images/smiling.png';
+  });
 }
