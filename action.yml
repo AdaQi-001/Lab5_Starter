@@ -1,5 +1,0 @@
-jobs:
-  my_first_job:
-    steps:
-      - name: My first step
-        uses: adaqi-001/introduction-to-github@v3
