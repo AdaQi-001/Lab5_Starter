@@ -45,7 +45,7 @@ function play_sound() {
 function change_volume() {
   const changedVolume = vol.value;
   sound.volume = changedVolume / 100;
-  if (changedVolume === 0) {
+  if (changedVolume < 1) {
     vol_img.src = 'assets/icons/volume-level-0.svg';
   } else if (changedVolume < 33) {
     vol_img.src = 'assets/icons/volume-level-1.svg';
